@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>きりあに！</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css"
+      rel="stylesheet"
+    />
+    <!-- Vue.js CDNリンク -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.22/dist/vue.global.prod.min.js"></script>
+    <!-- Axios CDNリンク -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <section>
+        <div class="wrapper">
+          <div class="category">
+            <ul>
+              <li
+                v-for="(season, index) in seasons"
+                :key="index"
+                @click="loadAnimeList(season)"
+                :class="{ active: season === selectedSeason }"
+              >
+                {{ season }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section v-if="selectedSeason">
+        <div class="wrapper">
+          <div id="card-list" class="card-list">
+            <div v-for="(anime, index) in animeList" :key="index" class="card">
+              <img class="card-img" :src="anime.anime_image" />
+              <div class="card-content">
+                <p class="card-title">{{anime.anime_title}}</p>
+                <button class="card-btn"><a href="">もっと見る</a></button>
+                <div class="card-text">
+                  <a
+                    v-if="anime.anime_officeSite"
+                    class="officeSiteRelease"
+                    :href="anime.anime_officeSite"
+                    >公式サイト</a
+                  >
+                  <a
+                    v-if="anime.anime_twitter"
+                    class="XRelease"
+                    :href="anime.anime_twitter"
+                    >X(Twitter)</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript" src="./js/kiriani.js"></script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+/* CSSリセット、フォント、カラーの設定*/
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(36, 36, 36);
+    font-family: "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+}
+
+.wrapper {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 4%;
+
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px #ccc;
+}
+.top {
+    padding-top: 30px;
+    display: flex;
+}
+.top:nth-child(n+2) {
+    padding-top: 80px;
+}
+.key-img {
+    width: 415px;
+    padding-right: 40px;
+}
+.info h2 {
+    margin-bottom: 20px;
+}
+.info ul {
+    padding: 0;
+    list-style: none;
+}
+.info li:first-child {
+    /* border-top: 1px solid #DDDDDD; */
+}
+.info li {
+    border-bottom: 1px solid #DDDDDD;
+    padding: 15px 0;
+}
+.info span {
+    font-size: 13px;
+    color: #606060;
+}
+.info p {
+    margin: 5px 0 5px 0;
+}
+.info .more {
+    font-size: 12px;
+    color: #39c;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.info .more::before {
+    content: "もっと見る";
+}
+.info .more:hover {
+    cursor: pointer;
+}
+.info .more.on-click::before {
+    content: "閉じる";
+}
+.info .more-txt {
+    display: none;
+}
+.info a {
+    color: #39c;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+
+.overview h2 {
+    margin: 20px 0px 10px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #606060;
+}
+.overview {
+    font-size: 13px;
+    margin-top: 30px;
+}
+.overview p {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+.cast-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 140px);
+    align-items: end;
+    grid-gap: 20px;
+}
+.cast-img {
+    display: flex;
+}
+.cast-img img {
+    width: 70px;
+}
+.cast-list h2 {
+    display: inline-block;
+    margin: 20px 0px 10px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #606060;
+}
+.cast-name p {
+    margin: 0;
+    padding: 0;
+}
+.cast-name p:first-child {
+    margin: 3px 0 0 0;
+}
+.overview .more {
+    margin-top: 20px;
+    font-size: 12px;
+    text-align: end;
+}
+.overview .more a {
+    color: #39c;
+    text-decoration: none;
+}
+
+.test-box:first-of-type {
+    border-top: 1px solid #DDDDDD;
+}
+.test-box {
+    border-bottom: 1px solid #DDDDDD;
+    padding: 15px 0 15px 0;
+}
+.test-list {
+    display: flex;
+}
+.test-list .broad-time {
+    margin-left: 10px;
+}
+.test-list ul, .test-list li {
+    border: none;
+}
+.test-list li:first-child {
+    padding: 5px 0 0 0;
+    margin: 0;
+}
+.test-list li {
+    margin: 5px 0 5px 0;
+    padding: 0;
+}
+.broad li:nth-child(n+3), .broad-time li:nth-child(n+3) {
+    display: none;
+}
+
+@media screen and (max-width: 780px) {
+    .top {
+        display: block;
+    }
+    .key-img {
+        padding-right: 0;
+        width: 100%;
+    }
+    .info h2 {
+        font-size: 15px;
+        text-align: center;
+    }
+    .cast-img img {
+        width: auto;
+    }
+}
