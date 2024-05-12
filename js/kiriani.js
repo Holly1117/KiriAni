@@ -12,7 +12,7 @@ const app = Vue.createApp({
   methods: {
     generateSeasonMenu() {
       axios
-        .get("../json/")
+        .get("./json/")
         .then((response) => {
           // ファイル名からメニューを生成
           this.seasons = response.data.map((file) => {
@@ -37,7 +37,7 @@ const app = Vue.createApp({
       const seasonName = this.convertToFileName(season);
       const fileName = `${seasonName}_animaList.json`;
       axios
-        .get(`../json/${fileName}`)
+        .get(`./json/${fileName}`)
         .then((response) => {
           this.selectedSeason = season;
           this.animeList = response.data;
