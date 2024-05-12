@@ -4,6 +4,7 @@ const app = Vue.createApp({
       seasons: [],
       selectedSeason: null,
       animeList: [],
+      fileNameList: [],
     };
   },
   mounted() {
@@ -12,20 +13,13 @@ const app = Vue.createApp({
   methods: {
     generateSeasonMenu() {
       axios
-        .get("./json/")
+        .get("./json/anime_fileList.json")
         .then((response) => {
           // ファイル名からメニューを生成
-          this.seasons = response.data.map((file) => {
-            const year = file.split("_")[0];
-            const season = file.split("_")[1];
-            const EnglishTojapanese = {
-              spring: "春",
-              summer: "夏",
-              autumn: "秋",
-              winter: "冬",
-            };
-            return `${year.slice(2)}年 ${EnglishTojapanese[season]}`;
-          });
+          this.fileNameList = response.data;
+          this.seasons = this.fileNameList.map(
+            (season) => season.JapaneseSeasonName
+          );
           this.seasons = this.seasons.reverse();
           this.loadLatestAnimeList();
         })
@@ -34,8 +28,7 @@ const app = Vue.createApp({
         });
     },
     loadAnimeList(season) {
-      const seasonName = this.convertToFileName(season);
-      const fileName = `${seasonName}_animaList.json`;
+      const fileName = this.findFileNameByJapaneseSeasonName(season);
       axios
         .get(`./json/${fileName}`)
         .then((response) => {
@@ -52,21 +45,13 @@ const app = Vue.createApp({
         this.loadAnimeList(latestSeason);
       }
     },
-    convertToFileName(season) {
-      const [year, seasonName] = season.split(" ");
-      const englishToJapanese = {
-        spring: "春",
-        summer: "夏",
-        autumn: "秋",
-        winter: "冬",
-      };
-      let englishSeason = "";
-      for (const key in englishToJapanese) {
-        if (englishToJapanese[key] === seasonName) {
-          englishSeason = key;
+    findFileNameByJapaneseSeasonName(JapaneseSeasonName) {
+      for (const item of this.fileNameList) {
+        if (item.JapaneseSeasonName === JapaneseSeasonName) {
+          return item.fileName;
         }
       }
-      return `20${year.slice(0, 2)}_${englishSeason}`;
+      return null;
     },
   },
 });
